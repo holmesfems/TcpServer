@@ -74,6 +74,7 @@ namespace TcpServer
 			std::string data = std::string(boost::asio::buffer_cast<const char*>(_receive_buff.data()), bytes_transferred);
 			data = data.substr(0, data.length() - 1);
 			*_os << "cmd = \"" << data << "\"" << std::endl;
+			send(data + " received!");
 			if (bytes_transferred == 0 && err == boost::asio::error::eof)
 			{
 				*_os << "connection lost!" << std::endl;
